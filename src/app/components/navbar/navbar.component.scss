@@ -1,9 +1,12 @@
 @import "../../variables";
+
 .toolbar {
   width: 100%;
-  padding: 0 4rem;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  padding: 0 $padding-nav-horizontal;
+  // box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   display: flex;
+  background-color: $primary-color;
+
   justify-content: space-between;
   a {
     color: white;
@@ -11,7 +14,8 @@
     transition: all 0.2s ease-in-out;
 
     &:hover {
-      filter: brightness(0.7);
+      filter: brightness(1.8);
+      color: #aaa;
     }
   }
 
@@ -28,6 +32,7 @@
       transition: all 0.2s ease-in-out;
       &:hover {
         filter: brightness(0.7);
+        color: #aaa;
       }
     }
 
