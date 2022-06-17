@@ -1,6 +1,17 @@
 <div class="champions-container">
   <h2>Champions</h2>
   <div class="champions-search">
-    <input type="text" placeholder="Search for champion" />
+    <input
+      type="text"
+      [(ngModel)]="search"
+      (ngModelChange)="handleSearchInput($event)"
+      placeholder="Search for champion"
+    />
+  </div>
+
+  <div class="champions-directory">
+    <app-champion-list-item
+      *ngFor="let champion of championsToShow"
+    ></app-champion-list-item>
   </div>
 </div>

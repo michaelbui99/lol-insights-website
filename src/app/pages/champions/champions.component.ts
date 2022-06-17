@@ -11,6 +11,7 @@ import { ChampionsService } from 'src/app/services/champions.service';
 export class ChampionsComponent implements OnInit {
   allChampions: Champion[] = [];
   championsToShow: Champion[] = [];
+  search: string = '';
 
   constructor(
     private _router: Router,
@@ -25,4 +26,13 @@ export class ChampionsComponent implements OnInit {
   }
 
   handleChampionClick(champion: Champion) {}
+
+  handleSearchInput(searchQuery: string) {
+    if (!searchQuery) {
+      this.championsToShow = this.allChampions;
+    }
+    this.championsToShow = this.allChampions.filter((champion) =>
+      champion.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+  }
 }

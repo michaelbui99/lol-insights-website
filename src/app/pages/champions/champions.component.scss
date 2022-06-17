@@ -3,6 +3,7 @@
 
 .champions-container {
   @include page-container;
+  width: 100%;
 
   .champions-search {
     display: flex;
@@ -15,6 +16,7 @@
   }
 
   .champions-directory {
+    background-color: white;
     display: grid;
     grid-template-columns: repeat(8, 1fr);
   }

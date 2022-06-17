@@ -14,12 +14,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { HomeComponent } from './pages/home/home.component';
 import { ChampionsComponent } from './pages/champions/champions.component';
+import { ChampionListItemComponent } from './components/champion-list-item/champion-list-item.component';
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     HomeComponent,
     ChampionsComponent,
+    ChampionListItemComponent,
   ],
   imports: [
     BrowserModule,
