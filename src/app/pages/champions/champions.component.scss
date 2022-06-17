@@ -1,0 +1,21 @@
+@import "../../variables";
+@import "../../shared";
+
+.champions-container {
+  @include page-container;
+
+  .champions-search {
+    display: flex;
+    flex-direction: row;
+
+    input {
+      padding: 0.5rem 1rem;
+      width: 40%;
+    }
+  }
+
+  .champions-directory {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+  }
+}
