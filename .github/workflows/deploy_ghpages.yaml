@@ -24,7 +24,4 @@ jobs:
         run: npm run build
 
       - name: Deploy to github Pages
-        uses: JamesIves/github-pages-deploy-action@v4.3.3
-        with:
-          branch: ghpages
-          folder: dist
+        run: ng deploy --base-href=/lol-insights-webiste
