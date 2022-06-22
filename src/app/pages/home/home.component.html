@@ -4,12 +4,17 @@
   </h2>
 
   <p class="hero__subtext">
-    Unlock knowledge and step up your impact on the rift
+    Increase your impact on the rift and reach the next league
   </p>
 
   <div class="search">
-    <select name="search-region" id="search-region-dropdown">
+    <select
+      name="search-region"
+      [(ngModel)]="selectedRegion"
+      id="search-region-dropdown"
+    >
       <option value="" disabled selected>Select Region</option>
+      <option *ngFor="let region of regions">{{ region }}</option>
     </select>
 
     <input

@@ -1,1 +1,18 @@
-<p>champions works!</p>
+<div class="champions-container">
+  <h2>Champions</h2>
+  <div class="champions-search">
+    <input
+      type="text"
+      [(ngModel)]="search"
+      (ngModelChange)="handleSearchInput()"
+      placeholder="Search for champion"
+    />
+  </div>
+
+  <div class="champions-directory">
+    <app-champion-list-item
+      *ngFor="let champion of championsToShow"
+      [champion]="champion"
+    ></app-champion-list-item>
+  </div>
+</div>
