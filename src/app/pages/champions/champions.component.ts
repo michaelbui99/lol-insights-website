@@ -9,7 +9,7 @@ import { ChampionsService } from 'src/app/services/champions.service';
   styleUrls: ['./champions.component.scss'],
 })
 export class ChampionsComponent implements OnInit {
-  allChampions: Champion[] = [];
+  allChampions: any[] = [];
   championsToShow: Champion[] = [];
   search: string = '';
 
@@ -18,21 +18,21 @@ export class ChampionsComponent implements OnInit {
     private _championsSerivce: ChampionsService
   ) {}
 
-  ngOnInit(): void {
-    this._championsSerivce
-      .getAll()
-      .subscribe((champions) => (this.allChampions = champions));
+  async ngOnInit(): Promise<void> {
+    this.allChampions = await this._championsSerivce.getAll();
+    console.log(this.allChampions);
     this.championsToShow = this.allChampions;
   }
 
   handleChampionClick(champion: Champion) {}
 
-  handleSearchInput(searchQuery: string) {
+  handleSearchInput(searchQuery: string | undefined | null) {
     if (!searchQuery) {
       this.championsToShow = this.allChampions;
     }
-    this.championsToShow = this.allChampions.filter((champion) =>
-      champion.name.toLowerCase().includes(searchQuery.toLowerCase())
-    );
+
+    this.championsToShow = this.allChampions.filter((champion) => {
+      champion.name.toLowerCase().includes(searchQuery!!.toLowerCase());
+    });
   }
 }

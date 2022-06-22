@@ -12,6 +12,7 @@
   <div class="champions-directory">
     <app-champion-list-item
       *ngFor="let champion of championsToShow"
+      [champion]="champion"
     ></app-champion-list-item>
   </div>
 </div>
