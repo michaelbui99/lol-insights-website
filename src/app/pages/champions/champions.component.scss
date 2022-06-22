@@ -1,0 +1,30 @@
+@import "../../variables";
+@import "../../shared";
+
+.champions-container {
+  @include page-container;
+  width: 100%;
+
+  .champions-search {
+    display: flex;
+    flex-direction: row;
+
+    input {
+      padding: 0.5rem 1rem;
+      width: 40%;
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+  .champions-directory {
+    margin-top: 2rem;
+    background-color: $color-background-alt;
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    border: 1px solid #a5a5a5;
+  }
+}

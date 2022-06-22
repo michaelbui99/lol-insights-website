@@ -1,0 +1,5 @@
+@mixin page-container {
+  padding: $padding-page;
+  background-color: $color-background;
+  height: $height-content;
+}

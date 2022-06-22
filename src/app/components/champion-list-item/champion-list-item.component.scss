@@ -1,0 +1,17 @@
+.champion-list-item-container {
+  cursor: pointer;
+  scale: 0.8;
+
+  .champion-icon {
+    transition: all 0.2s ease-in-out;
+  }
+
+  &:hover {
+    .champion-icon {
+      filter: brightness(1.5);
+    }
+    .champion-name {
+      font-weight: bold;
+    }
+  }
+}
