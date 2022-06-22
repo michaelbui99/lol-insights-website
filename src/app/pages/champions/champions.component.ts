@@ -9,8 +9,8 @@ import { ChampionsService } from 'src/app/services/champions.service';
   styleUrls: ['./champions.component.scss'],
 })
 export class ChampionsComponent implements OnInit {
-  allChampions: any[] = [];
-  championsToShow: Champion[] = [];
+  allChampions: Champion[];
+  championsToShow: Champion[];
   search: string = '';
 
   constructor(
@@ -20,19 +20,26 @@ export class ChampionsComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.allChampions = await this._championsSerivce.getAll();
-    console.log(this.allChampions);
     this.championsToShow = this.allChampions;
   }
 
   handleChampionClick(champion: Champion) {}
 
-  handleSearchInput(searchQuery: string | undefined | null) {
-    if (!searchQuery) {
+  handleSearchInput() {
+    if (!this.search) {
       this.championsToShow = this.allChampions;
+      return;
     }
+    const matchedChampions: Champion[] = [];
 
-    this.championsToShow = this.allChampions.filter((champion) => {
-      champion.name.toLowerCase().includes(searchQuery!!.toLowerCase());
+    this.allChampions.forEach((champion) => {
+      if (
+        champion.champion.name.toLowerCase().includes(this.search.toLowerCase())
+      ) {
+        matchedChampions.push(champion);
+      }
     });
+
+    this.championsToShow = matchedChampions;
   }
 }
