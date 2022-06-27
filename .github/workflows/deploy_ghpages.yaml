@@ -23,5 +23,8 @@ jobs:
       - name: Build dist
         run: npm run build
 
+      - name: Install angular cli
+        run: npm i -g @angular/cli
+
       - name: Deploy to github Pages
         run: ng deploy --base-href=/lol-insights-webiste
