@@ -11,7 +11,9 @@
     <select
       name="search-region"
       [(ngModel)]="selectedRegion"
+      (change)="onRegionSelected(regionSelect.value)"
       id="search-region-dropdown"
+      #regionSelect
     >
       <option value="" disabled selected>Select Region</option>
       <option *ngFor="let region of regions">{{ region }}</option>

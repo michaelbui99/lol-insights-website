@@ -15,6 +15,15 @@ export class HomeComponent implements OnInit {
     Object.values(Regions).forEach((value) =>
       this.regions.push(value.toString())
     );
+
+    const lastSelectedRegion = localStorage.getItem('lastSelectedRegion');
+    if (lastSelectedRegion) {
+      this.selectedRegion = lastSelectedRegion;
+    }
     console.log(this.regions);
+  }
+
+  onRegionSelected(region: string) {
+    localStorage.setItem('lastSelectedRegion', region);
   }
 }
