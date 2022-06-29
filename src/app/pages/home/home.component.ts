@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Champion } from 'src/app/model/champion';
 import { Regions } from 'src/app/model/regions';
+import { Summoner } from 'src/app/model/summoner';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +10,7 @@ import { Regions } from 'src/app/model/regions';
 export class HomeComponent implements OnInit {
   regions: string[] = [];
   selectedRegion: string = '';
-  profileSuggestions: Champion[];
+  profileSuggestions: Summoner[];
 
   constructor() {}
 
