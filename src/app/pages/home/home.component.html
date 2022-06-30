@@ -25,12 +25,20 @@
       id="summoner-search"
       class="search__input"
       placeholder="Search Summoner"
+      (input)="handleSearchInput(summonerSearch.value)"
+      #summonerSearch
     />
 
     <span class="material-symbols-outlined" id="search-button"> search </span>
   </div>
 
   <div class="profile-suggestions-container">
-    <p class="suggestions-header">Summoner Profile</p>
+    <p class="suggestions-header" *ngIf="shouldDisplayHeader">
+      Summoner Profile
+    </p>
+    <app-profile-suggestion
+      *ngFor="let profile of profileSuggestions"
+      [summoner]="profile"
+    ></app-profile-suggestion>
   </div>
 </div>

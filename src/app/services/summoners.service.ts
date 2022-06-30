@@ -20,11 +20,27 @@ export class SummonersService {
     }
 
     const res = await fetch(
-      `${BASE_URL}/api/v1/summoners/${summonerName}?region=${chosenRegion}`
+      `${BASE_URL}/summoner/${chosenRegion.toLowerCase()}/${summonerName}`
     );
 
     const summoner = await res.json();
 
     return summoner;
+  }
+
+  async getSummonersByName(summonerName: string, region?: Regions) {
+    let chosenRegion = Regions.EUW1;
+
+    if (region) {
+      chosenRegion = region;
+    }
+
+    const res = await fetch(
+      `${BASE_URL}/summoners/${chosenRegion.toLowerCase()}/${summonerName}`
+    );
+
+    const summoners = await res.json();
+    console.log(summoners);
+    return summoners;
   }
 }
