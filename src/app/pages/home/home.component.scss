@@ -1,5 +1,10 @@
 @import "../../variables";
 @import "../../shared";
+
+// These variables are used to align the search box with the profile suggestions
+$region-left-padding: 1rem;
+$search-input-width: 40vw;
+
 .material-symbols-outlined {
   font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
 }
@@ -28,13 +33,14 @@
   .search {
     display: flex;
     align-items: center;
-    width: 40vw;
+    width: $search-input-width;
     height: 50px;
     background-color: white;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 
     #search-region-dropdown {
       height: 100%;
+      padding-left: $region-left-padding;
       width: 20%;
       background-color: white;
       border: none;
@@ -62,6 +68,21 @@
       &:hover {
         opacity: 0.7;
       }
+    }
+  }
+
+  .profile-suggestions-container {
+    display: flex;
+    flex-direction: column;
+    width: $search-input-width;
+    padding-left: $region-left-padding;
+    background-color: white;
+    border-top: 1px solid #ddd;
+
+    .suggestions-header {
+      font-size: 13px;
+      padding-top: 0.5rem;
+      font-weight: bold;
     }
   }
 }

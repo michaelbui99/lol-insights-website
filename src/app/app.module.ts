@@ -15,6 +15,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { HomeComponent } from './pages/home/home.component';
 import { ChampionsComponent } from './pages/champions/champions.component';
 import { ChampionListItemComponent } from './components/champion-list-item/champion-list-item.component';
+import { ProfileSuggestionComponent } from './components/profile-suggestion/profile-suggestion.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,6 +23,7 @@ import { ChampionListItemComponent } from './components/champion-list-item/champ
     HomeComponent,
     ChampionsComponent,
     ChampionListItemComponent,
+    ProfileSuggestionComponent,
   ],
   imports: [
     BrowserModule,
