@@ -37,6 +37,7 @@ export class HomeComponent implements OnInit {
   async handleSearchInput(query: string) {
     if (!query) {
       this.shouldDisplayHeader = false;
+      this.profileSuggestions = [];
       return;
     }
 
