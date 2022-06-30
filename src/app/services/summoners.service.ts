@@ -39,7 +39,15 @@ export class SummonersService {
       `${BASE_URL}/summoners/${chosenRegion.toLowerCase()}/${summonerName}`
     );
 
-    const summoners = await res.json();
+    const summoners: Summoner[] = await res.json();
+
+    // Removing invalid
+    summoners.forEach((summoner, idx) => {
+      if (!summoner.accountId) {
+        summoners.splice(idx, 1);
+      }
+    });
+
     console.log(summoners);
     return summoners;
   }

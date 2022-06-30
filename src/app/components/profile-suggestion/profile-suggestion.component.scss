@@ -1,0 +1,25 @@
+$region-left-padding: 1rem;
+$search-input-width: 40vw;
+
+.profile-suggestion-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-bottom: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    filter: brightness(0.7);
+    opacity: 0.7;
+  }
+
+  .summoner-icon {
+    max-height: 30px;
+    border-radius: 50%;
+  }
+
+  .summoner-name {
+    margin-left: 1rem;
+  }
+}
