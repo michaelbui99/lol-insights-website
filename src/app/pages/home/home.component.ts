@@ -5,7 +5,7 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { Regions } from 'src/app/model/regions';
+import { Region } from 'src/app/model/region';
 import { Summoner } from 'src/app/model/summoner';
 import { SummonersService } from 'src/app/services/summoners.service';
 import * as _ from 'lodash';
@@ -17,6 +17,7 @@ import {
   filter,
   tap,
 } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-home',
@@ -31,13 +32,16 @@ export class HomeComponent implements AfterViewInit {
   selectedRegion: string = '';
   profileSuggestions: Summoner[] = [];
   shouldDisplayHeader: boolean = false;
-  regionMappings: Map<string, Regions> = new Map();
+  regionMappings: Map<string, Region> = new Map();
   searchQuery: string;
 
-  constructor(private _summonersService: SummonersService) {}
+  constructor(
+    private _summonersService: SummonersService,
+    private _snackBar: MatSnackBar
+  ) {}
 
   ngOnInit(): void {
-    Object.values(Regions).forEach((value) => {
+    Object.values(Region).forEach((value) => {
       this.regions.push(value.toString());
       this.regionMappings.set(value.toString(), value);
     });
@@ -58,11 +62,17 @@ export class HomeComponent implements AfterViewInit {
         distinctUntilChanged(),
         tap(async (text) => {
           this.searchQuery = this.searchRef.nativeElement.value;
-          this.profileSuggestions =
-            await this._summonersService.getSummonersByName(
-              this.searchQuery,
-              this.regionMappings.get(this.selectedRegion)
+          try {
+            this.profileSuggestions =
+              await this._summonersService.getSummonersByName(
+                this.searchQuery,
+                this.regionMappings.get(this.selectedRegion)
+              );
+          } catch {
+            this._snackBar.open(
+              'Failed to retrieve summoner, try again later...'
             );
+          }
         })
       )
       .subscribe();
