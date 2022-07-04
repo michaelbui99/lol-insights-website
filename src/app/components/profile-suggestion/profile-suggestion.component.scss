@@ -18,8 +18,17 @@ $search-input-width: 40vw;
     max-height: 30px;
     border-radius: 50%;
   }
-
-  .summoner-name {
+  .summoner-info {
+    display: flex;
+    flex-direction: column;
     margin-left: 1rem;
+
+    .summoner-name {
+      margin-bottom: 0;
+    }
+    .summoner-rank {
+      color: rgb(73, 73, 73);
+      font-size: smaller;
+    }
   }
 }

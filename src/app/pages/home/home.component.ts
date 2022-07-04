@@ -18,6 +18,10 @@ import {
   tap,
 } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { LeagueService } from 'src/app/services/league.service';
+import { LeagueEntry } from 'src/app/model/league-entry';
+import { League } from 'src/app/model/league';
+import { ProfileSuggestion } from 'src/app/model/profile-suggestion';
 
 @Component({
   selector: 'app-home',
@@ -28,22 +32,26 @@ export class HomeComponent implements AfterViewInit {
   @ViewChild('summonerSearch')
   searchRef: ElementRef;
 
+  private _regionMappings: Map<string, Region>;
+  profileLeagues: Map<string, League>;
   regions: string[] = [];
   selectedRegion: string = '';
-  profileSuggestions: Summoner[] = [];
+  profileSuggestions: ProfileSuggestion[] = [];
   shouldDisplayHeader: boolean = false;
-  regionMappings: Map<string, Region> = new Map();
   searchQuery: string;
 
   constructor(
     private _summonersService: SummonersService,
+    private _leagueService: LeagueService,
     private _snackBar: MatSnackBar
-  ) {}
+  ) {
+    this._regionMappings = new Map();
+  }
 
   ngOnInit(): void {
     Object.values(Region).forEach((value) => {
       this.regions.push(value.toString());
-      this.regionMappings.set(value.toString(), value);
+      this._regionMappings.set(value.toString(), value);
     });
 
     const lastSelectedRegion = localStorage.getItem('lastSelectedRegion');
@@ -62,16 +70,31 @@ export class HomeComponent implements AfterViewInit {
         distinctUntilChanged(),
         tap(async (text) => {
           this.searchQuery = this.searchRef.nativeElement.value;
-          try {
-            this.profileSuggestions =
-              await this._summonersService.getSummonersByName(
+          if (this.searchQuery) {
+            try {
+              const summoners = await this._summonersService.getSummonersByName(
                 this.searchQuery,
-                this.regionMappings.get(this.selectedRegion)
+                this._regionMappings.get(this.selectedRegion)
               );
-          } catch {
-            this._snackBar.open(
-              'Failed to retrieve summoner, try again later...'
-            );
+              this.profileSuggestions = [];
+
+              summoners.forEach(async (summoner) => {
+                const league =
+                  await this._leagueService.getLeagueBySummonerName(
+                    summoner.name,
+                    this._regionMappings.get(this.selectedRegion)
+                  );
+
+                this.profileSuggestions.push({
+                  summoner: summoner,
+                  league: league,
+                });
+              });
+            } catch {
+              this._snackBar.open(
+                'Failed to retrieve summoner, try again later...'
+              );
+            }
           }
         })
       )
