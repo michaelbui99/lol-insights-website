@@ -38,7 +38,8 @@
     </p>
     <app-profile-suggestion
       *ngFor="let profile of profileSuggestions"
-      [summoner]="profile"
+      [summoner]="profile.summoner"
+      [league]="profile.league"
     ></app-profile-suggestion>
   </div>
 </div>

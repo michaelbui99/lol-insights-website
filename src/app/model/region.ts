@@ -1,4 +1,4 @@
-export enum Regions {
+export enum Region {
   BR1 = 'BR1',
   EUN1 = 'EUN1',
   EUW1 = 'EUW1',

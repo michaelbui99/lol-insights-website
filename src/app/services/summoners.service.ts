@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BASE_URL } from '../config/config';
-import { Regions } from '../model/regions';
+import { Region } from '../model/region';
 import { Summoner } from '../model/summoner';
 
 @Injectable({
@@ -11,9 +11,9 @@ export class SummonersService {
 
   async getSummonerByName(
     summonerName: string,
-    region?: Regions
+    region?: Region
   ): Promise<Summoner> {
-    let chosenRegion = Regions.EUW1;
+    let chosenRegion = Region.EUW1;
 
     if (region) {
       chosenRegion = region;
@@ -28,8 +28,8 @@ export class SummonersService {
     return summoner;
   }
 
-  async getSummonersByName(summonerName: string, region?: Regions) {
-    let chosenRegion = Regions.EUW1;
+  async getSummonersByName(summonerName: string, region?: Region) {
+    let chosenRegion = Region.EUW1;
 
     if (region) {
       chosenRegion = region;
