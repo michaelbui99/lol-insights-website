@@ -79,6 +79,7 @@ export class HomeComponent implements AfterViewInit {
                 this.searchQuery,
                 this._regionMappings.get(this.selectedRegion)
               );
+              sessionStorage.setItem('summoners', JSON.stringify(summoners));
               this.profileSuggestions = [];
 
               summoners.forEach(async (summoner) => {

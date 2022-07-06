@@ -15,6 +15,7 @@ import { LeagueTier } from 'src/app/model/league-tier';
 import { League } from 'src/app/model/league';
 import { Router } from '@angular/router';
 import { ProfileSuggestionClickEventData } from './profile-suggestion-click-event-data';
+import { SummonersService } from 'src/app/services/summoners.service';
 @Component({
   selector: 'app-profile-suggestion',
   templateUrl: './profile-suggestion.component.html',
@@ -34,10 +35,15 @@ export class ProfileSuggestionComponent implements OnInit {
   divisonToDisplay: LeagueDivison;
   lpToDisplay: number;
 
-  constructor(private _router: Router) {}
+  constructor(
+    private _router: Router,
+    private _summonersService: SummonersService
+  ) {}
 
   ngOnInit(): void {
-    this.profileIconUrl = `${DDRAGON_IMG_PROFILE_ICON_URL}/${this.summoner.profileIconId.toString()}.png`;
+    this.profileIconUrl = this._summonersService.getSummonerIconUrl(
+      this.summoner
+    );
     console.log(this.league);
     this.league.data.forEach((entry) => {
       if (entry.summonerId === this.summoner.id) {

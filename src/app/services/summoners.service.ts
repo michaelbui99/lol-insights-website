@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BASE_URL } from '../config/config';
+import { BASE_URL, DDRAGON_IMG_PROFILE_ICON_URL } from '../config/config';
 import { Region } from '../model/region';
 import { Summoner } from '../model/summoner';
 
@@ -50,5 +50,9 @@ export class SummonersService {
 
     console.log(summoners);
     return summoners;
+  }
+
+  getSummonerIconUrl(summoner: Summoner) {
+    return `${DDRAGON_IMG_PROFILE_ICON_URL}/${summoner.profileIconId.toString()}.png`;
   }
 }

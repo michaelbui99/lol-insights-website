@@ -1,0 +1,45 @@
+.summoner-header-container {
+  display: flex;
+  flex-direction: row;
+  margin-top: 2rem;
+  max-height: 100px;
+
+  .summoner-icon {
+    max-height: 100px;
+    border: 2px solid black;
+    border-radius: 8px;
+  }
+
+  .summoner-info {
+    display: flex;
+    flex-direction: column;
+    margin-left: 1rem;
+
+    .summoner-name {
+      font-weight: bold;
+      font-size: 24px;
+      margin-bottom: 0.3rem;
+    }
+
+    .summoner-level {
+      font-weight: bold;
+      margin-bottom: 0.8rem;
+    }
+
+    .button-update {
+      margin-bottom: 0.3rem;
+      padding: 0.6rem 0rem;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+      border: none;
+      border-radius: 8px;
+      background-color: #222;
+      color: white;
+      font-weight: bold;
+
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+  }
+}
