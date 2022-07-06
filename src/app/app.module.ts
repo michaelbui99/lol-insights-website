@@ -15,6 +15,7 @@ import { ChampionsComponent } from './pages/champions/champions.component';
 import { ChampionListItemComponent } from './components/champion-list-item/champion-list-item.component';
 import { ProfileSuggestionComponent } from './components/profile-suggestion/profile-suggestion.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { SummonerComponent } from './pages/summoner/summoner.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,6 +24,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     ChampionsComponent,
     ChampionListItemComponent,
     ProfileSuggestionComponent,
+    SummonerComponent,
   ],
   imports: [
     BrowserModule,
