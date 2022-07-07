@@ -22,6 +22,8 @@ import { LeagueService } from 'src/app/services/league.service';
 import { LeagueEntry } from 'src/app/model/league-entry';
 import { League } from 'src/app/model/league';
 import { ProfileSuggestion } from 'src/app/model/profile-suggestion';
+import { Router } from '@angular/router';
+import { ProfileSuggestionClickEventData } from 'src/app/components/profile-suggestion/profile-suggestion-click-event-data';
 
 @Component({
   selector: 'app-home',
@@ -43,7 +45,8 @@ export class HomeComponent implements AfterViewInit {
   constructor(
     private _summonersService: SummonersService,
     private _leagueService: LeagueService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private _router: Router
   ) {
     this._regionMappings = new Map();
   }
@@ -76,6 +79,7 @@ export class HomeComponent implements AfterViewInit {
                 this.searchQuery,
                 this._regionMappings.get(this.selectedRegion)
               );
+              sessionStorage.setItem('summoners', JSON.stringify(summoners));
               this.profileSuggestions = [];
 
               summoners.forEach(async (summoner) => {
@@ -113,5 +117,13 @@ export class HomeComponent implements AfterViewInit {
     }
 
     this.shouldDisplayHeader = true;
+  }
+
+  handleOnProfileSuggestionClick(data: ProfileSuggestionClickEventData) {
+    const { summonerName } = data;
+
+    this._router.navigate(['summoner'], {
+      queryParams: { summonerName: summonerName, region: this.selectedRegion },
+    });
   }
 }

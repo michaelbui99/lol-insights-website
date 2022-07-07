@@ -40,6 +40,7 @@
       *ngFor="let profile of profileSuggestions"
       [summoner]="profile.summoner"
       [league]="profile.league"
+      (onClick)="handleOnProfileSuggestionClick($event)"
     ></app-profile-suggestion>
   </div>
 </div>
