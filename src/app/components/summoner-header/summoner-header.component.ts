@@ -11,6 +11,7 @@ export class SummonerHeaderComponent implements OnInit {
   @Input()
   summoner: Summoner;
   summonerIconUrl: string;
+  shouldDisplayLastUpdated: boolean = false;
 
   constructor(private _summonersService: SummonersService) {}
 
@@ -18,5 +19,9 @@ export class SummonerHeaderComponent implements OnInit {
     this.summonerIconUrl = this._summonersService.getSummonerIconUrl(
       this.summoner
     );
+  }
+
+  handleUpdateButtonHover() {
+    this.shouldDisplayLastUpdated = !this.shouldDisplayLastUpdated;
   }
 }

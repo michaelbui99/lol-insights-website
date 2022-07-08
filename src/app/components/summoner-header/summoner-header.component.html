@@ -3,6 +3,15 @@
   <div class="summoner-info">
     <h3 class="summoner-name">{{ summoner.name }}</h3>
     <p class="summoner-level">Level {{ summoner.level }}</p>
-    <button class="button-update">Update</button>
+    <button
+      (mouseenter)="handleUpdateButtonHover()"
+      (mouseleave)="handleUpdateButtonHover()"
+      class="button-update"
+    >
+      Update
+    </button>
+    <p *ngIf="shouldDisplayLastUpdated" class="last-updated-text">
+      Last updated:
+    </p>
   </div>
 </div>
