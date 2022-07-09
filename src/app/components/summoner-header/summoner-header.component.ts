@@ -10,6 +10,8 @@ import { SummonersService } from 'src/app/services/summoners.service';
 export class SummonerHeaderComponent implements OnInit {
   @Input()
   summoner: Summoner;
+  @Input()
+  lastUpdated: string;
   summonerIconUrl: string;
   shouldDisplayLastUpdated: boolean = false;
 

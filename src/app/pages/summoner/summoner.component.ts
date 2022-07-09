@@ -11,6 +11,8 @@ import { SummonersService } from 'src/app/services/summoners.service';
 })
 export class SummonerComponent implements OnInit {
   summoner: Summoner;
+  // TODO: Implement when the summoner page was last updated for a given summoner
+  lastUpdated: string;
 
   constructor(
     private _route: ActivatedRoute,
