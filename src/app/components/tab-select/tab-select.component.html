@@ -1,1 +1,6 @@
-<p>tab-select works!</p>
+<div class="tab-select-container">
+  <app-tab-select-option
+    *ngFor="let option of selectOptions"
+    [optionText]="option"
+  ></app-tab-select-option>
+</div>

@@ -18,6 +18,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { SummonerComponent } from './pages/summoner/summoner.component';
 import { SummonerHeaderComponent } from './components/summoner-header/summoner-header.component';
 import { TabSelectComponent } from './components/tab-select/tab-select.component';
+import { TabSelectOptionComponent } from './components/tab-select-option/tab-select-option.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,6 +30,7 @@ import { TabSelectComponent } from './components/tab-select/tab-select.component
     SummonerComponent,
     SummonerHeaderComponent,
     TabSelectComponent,
+    TabSelectOptionComponent,
   ],
   imports: [
     BrowserModule,
