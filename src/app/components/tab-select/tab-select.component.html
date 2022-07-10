@@ -1,0 +1,9 @@
+<div class="tab-select-container">
+  <app-tab-select-option
+    *ngFor="let option of selectOptions"
+    [optionText]="option"
+    [selected]="selectedOption === option"
+    [hoverTextColor]="'gray'"
+    (optionClick)="handleOnOptionClick($event)"
+  ></app-tab-select-option>
+</div>

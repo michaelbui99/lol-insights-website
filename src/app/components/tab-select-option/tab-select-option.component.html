@@ -1,0 +1,13 @@
+<div
+  class="select-option-container"
+  [ngStyle]="{
+    color: isHovered == true ? hoverTextColor : 'black',
+    borderBottomColor: hoverTextColor
+  }"
+  [ngClass]="{ active: isHovered || selected }"
+  (mouseenter)="handleOnHover()"
+  (mouseleave)="handleOnHover()"
+  (click)="handleOnClick()"
+>
+  <p>{{ optionText }}</p>
+</div>
