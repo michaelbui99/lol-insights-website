@@ -1,0 +1,13 @@
+.select-option-container {
+  min-height: 2.5rem;
+  border: none;
+  cursor: pointer;
+
+  p {
+    font-weight: bold;
+  }
+}
+
+.select-option-container.active {
+  border-bottom: 2px solid;
+}

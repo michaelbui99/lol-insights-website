@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-tab-select-option',
@@ -8,8 +8,26 @@ import { Component, Input, OnInit } from '@angular/core';
 export class TabSelectOptionComponent implements OnInit {
   @Input()
   optionText: string;
+  @Input()
+  selected: boolean;
+  @Input()
+  hoverTextColor: string;
+
+  // A tab select option will emit the option text on click
+  @Output()
+  optionClick: EventEmitter<string> = new EventEmitter();
+
+  isHovered: boolean = false;
 
   constructor() {}
 
   ngOnInit(): void {}
+
+  handleOnHover() {
+    this.isHovered = !this.isHovered;
+  }
+
+  handleOnClick() {
+    this.optionClick.emit(this.optionText);
+  }
 }
