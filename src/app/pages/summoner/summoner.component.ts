@@ -3,6 +3,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { RegionMappings } from 'src/app/model/region-mappings';
 import { Summoner } from 'src/app/model/summoner';
 import { SummonersService } from 'src/app/services/summoners.service';
+import { SummonerTabOption } from './summoner-tab-option';
 
 @Component({
   selector: 'app-summoner',
@@ -13,6 +14,7 @@ export class SummonerComponent implements OnInit {
   summoner: Summoner;
   // TODO: Implement when the summoner page was last updated for a given summoner
   lastUpdated: string;
+  tabOptions: string[] = [];
 
   constructor(
     private _route: ActivatedRoute,
@@ -20,6 +22,10 @@ export class SummonerComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    Object.values(SummonerTabOption).forEach((value) =>
+      this.tabOptions.push(value)
+    );
+
     const summonersJsonString = sessionStorage.getItem('summoners');
     const cachedSummoners: Summoner[] = JSON.parse(summonersJsonString);
 
