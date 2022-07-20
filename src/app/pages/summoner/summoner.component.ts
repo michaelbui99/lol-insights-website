@@ -15,6 +15,7 @@ export class SummonerComponent implements OnInit {
   // TODO: Implement when the summoner page was last updated for a given summoner
   lastUpdated: string;
   tabOptions: string[] = [];
+  selectedTab: SummonerTabOption;
 
   constructor(
     private _route: ActivatedRoute,
@@ -46,5 +47,24 @@ export class SummonerComponent implements OnInit {
         );
       }
     });
+  }
+
+  onTabChange(selectedTab: string) {
+    switch (selectedTab) {
+      case SummonerTabOption.OVERVIEW:
+        this.selectedTab = SummonerTabOption.OVERVIEW;
+        break;
+
+      case SummonerTabOption.CHAMPION_STATS:
+        this.selectedTab = SummonerTabOption.CHAMPION_STATS;
+        break;
+
+      case SummonerTabOption.LIVE_GAME:
+        this.selectedTab = SummonerTabOption.LIVE_GAME;
+        break;
+
+      default:
+        break;
+    }
   }
 }

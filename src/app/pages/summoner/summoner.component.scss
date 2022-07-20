@@ -5,4 +5,22 @@
   @include page-container;
   display: flex;
   flex-direction: column;
+
+  .content-container {
+    // Contains the main content such as rank and match history
+    // Content can be plaiced into one of two columns: left or right.
+    display: flex;
+    flex-direction: row;
+    margin-top: 2rem;
+
+    &__left {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &__right {
+      display: flex;
+      flex-direction: column;
+    }
+  }
 }

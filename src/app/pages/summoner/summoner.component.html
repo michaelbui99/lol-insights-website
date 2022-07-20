@@ -3,5 +3,15 @@
     [summoner]="summoner"
     [lastUpdated]="lastUpdated"
   ></app-summoner-header>
-  <app-tab-select [selectOptions]="tabOptions"></app-tab-select>
+  <app-tab-select
+    [selectOptions]="tabOptions"
+    (selectedOptionChanged)="onTabChange($event)"
+  ></app-tab-select>
+
+  <div class="content-container">
+    <div class="content-container__left">
+      <app-summoner-rank-card></app-summoner-rank-card>
+    </div>
+    <div class="content-container__right"></div>
+  </div>
 </div>
