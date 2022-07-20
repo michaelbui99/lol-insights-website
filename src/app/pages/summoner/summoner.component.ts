@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { RegionMappings } from 'src/app/model/region-mappings';
 import { Summoner } from 'src/app/model/summoner';
@@ -10,7 +16,12 @@ import { SummonerTabOption } from './summoner-tab-option';
   templateUrl: './summoner.component.html',
   styleUrls: ['./summoner.component.scss'],
 })
-export class SummonerComponent implements OnInit {
+export class SummonerComponent implements AfterViewInit {
+  @ViewChild('tabSelect', { read: ElementRef })
+  tabSelectRef: ElementRef;
+  @ViewChild('contentLeftColumn')
+  contentLeftColumnRef: ElementRef;
+
   summoner: Summoner;
   // TODO: Implement when the summoner page was last updated for a given summoner
   lastUpdated: string;
@@ -27,6 +38,7 @@ export class SummonerComponent implements OnInit {
       this.tabOptions.push(value)
     );
 
+    // Summoners retrieved on search in Home page is cached to prevent excess API calls
     const summonersJsonString = sessionStorage.getItem('summoners');
     const cachedSummoners: Summoner[] = JSON.parse(summonersJsonString);
 
@@ -41,12 +53,17 @@ export class SummonerComponent implements OnInit {
       });
 
       if (!this.summoner) {
+        // API Call is only made if no summoner was cached
         this.summoner = await this._summonersService.getSummonerByName(
           summonerName,
           RegionMappings.regionMappings.get(region)
         );
       }
     });
+  }
+
+  ngAfterViewInit(): void {
+    this.ensureLeftContentColumnWidthIsSameAsTabSelect();
   }
 
   onTabChange(selectedTab: string) {
@@ -66,5 +83,9 @@ export class SummonerComponent implements OnInit {
       default:
         break;
     }
+  }
+
+  private ensureLeftContentColumnWidthIsSameAsTabSelect() {
+    this.contentLeftColumnRef.nativeElement.style.width = `${this.tabSelectRef.nativeElement.offsetWidth}px`;
   }
 }
