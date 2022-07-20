@@ -31,9 +31,6 @@ export class ProfileSuggestionComponent implements OnInit {
 
   leagueEntryForSummoner: LeagueEntry;
   profileIconUrl: string;
-  tierToDisplay: LeagueTier;
-  divisonToDisplay: LeagueDivison;
-  lpToDisplay: number;
 
   constructor(
     private _router: Router,
@@ -48,14 +45,15 @@ export class ProfileSuggestionComponent implements OnInit {
     this.league.data.forEach((entry) => {
       if (entry.summonerId === this.summoner.id) {
         this.leagueEntryForSummoner = entry;
-        this.tierToDisplay = this.leagueEntryForSummoner.tier;
-        this.divisonToDisplay = this.leagueEntryForSummoner.division;
-        this.lpToDisplay = this.leagueEntryForSummoner.leaguePoints;
       }
     });
   }
 
   handleOnClick() {
     this.onClick.emit({ summonerName: this.summoner.name });
+  }
+
+  setLeagueEntryForSummoner(leagueEntry: LeagueEntry) {
+    this.leagueEntryForSummoner = leagueEntry;
   }
 }

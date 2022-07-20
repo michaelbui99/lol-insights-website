@@ -24,6 +24,7 @@ import { League } from 'src/app/model/league';
 import { ProfileSuggestion } from 'src/app/model/profile-suggestion';
 import { Router } from '@angular/router';
 import { ProfileSuggestionClickEventData } from 'src/app/components/profile-suggestion/profile-suggestion-click-event-data';
+import { QueueType } from 'src/app/model/queue-type';
 
 @Component({
   selector: 'app-home',
@@ -86,7 +87,8 @@ export class HomeComponent implements AfterViewInit {
                 const league =
                   await this._leagueService.getLeagueBySummonerName(
                     summoner.name,
-                    this._regionMappings.get(this.selectedRegion)
+                    this._regionMappings.get(this.selectedRegion),
+                    QueueType.SOLO
                   );
 
                 this.profileSuggestions.push({

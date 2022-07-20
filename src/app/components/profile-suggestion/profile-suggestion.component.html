@@ -3,7 +3,10 @@
   <div class="summoner-info">
     <p class="summoner-name">{{ summoner.name }}</p>
     <p class="summoner-rank">
-      {{ tierToDisplay }} {{ divisonToDisplay }} - {{ lpToDisplay }} LP
+      {{ leagueEntryForSummoner.tier }}
+      {{ leagueEntryForSummoner.division }} -
+      {{ leagueEntryForSummoner.leaguePoints }}
+      LP
     </p>
   </div>
 </div>
